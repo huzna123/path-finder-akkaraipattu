@@ -40,7 +40,7 @@ export default function App() {
 
   const fetchDestinations = () => {
     setLoading(true);
-    fetch('/api/api/destinations')
+    fetch('/api/destinations')
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch destinations');
         return res.json();
@@ -74,8 +74,8 @@ export default function App() {
   const handleSaveDestination = (e) => {
     e.preventDefault();
     const url = editingId 
-      ? `/api/api/destinations/${editingId}`
-      : '/api/api/destinations';
+      ? `/api/destinations/${editingId}`
+      : '/api/destinations';
     
     fetch(url, {
       method: editingId ? 'PUT' : 'POST',
@@ -116,7 +116,7 @@ export default function App() {
 
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this place?')) {
-      fetch(`/api/api/destinations/${id}`, { method: 'DELETE' })
+      fetch(`/api/destinations/${id}`, { method: 'DELETE' })
         .then(() => fetchDestinations())
         .catch(err => alert('Error deleting: ' + err.message));
     }
